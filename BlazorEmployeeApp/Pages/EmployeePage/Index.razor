@@ -13,7 +13,7 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             @if (employees is null)
             {
                 <p><em>Loading... !</em></p>
@@ -30,8 +30,16 @@
             }
 
         </div>
-        <div class="col-md-6">
-            <div class="col-md-8">
+
+
+    </div>
+    <br />
+    <div class="row">
+
+    
+    
+        <div class="col-md-8">
+            <form>
                 <div class="form-group">
                     <label for="Name" class="control-label">Name</label>
                     <input form="Name" class="form-control" @bind="@obj.EmployeeName" />
@@ -45,6 +53,10 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="BirdthDate" class="control-label">BirdthDate</label>
+                    <DatePicker Height="50px" Width="100px" Value="@obj.BirdthDate"></DatePicker>
+                </div>
+                <div class="form-group">
                     <label for="Address" class="control-label">Address</label>
                     <input form="Address" class="form-control" @bind="@obj.Address" />
                 </div>
@@ -56,17 +68,16 @@
                     <input type="button" class="btn btn-primary" @onclick="@CreateEmployee" value="Save" />
                     <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Cancel" />
                 </div>
-
-            </div>
-
-            <form>
             </form>
-
-
-
         </div>
+
+       
+       
+
+
+
     </div>
-    <br />
+
     @*<div class="row mt-2">
             <div class="col-md-8">
                 <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
@@ -93,7 +104,9 @@
     {
         base.OnInitialized();
         DataGridModule.Register(IgniteUIBlazor);
+        DatePickerModule.Register(IgniteUIBlazor);
         employees = getAll();
+        obj.BirdthDate = DateTime.Today;
 
 
     }
